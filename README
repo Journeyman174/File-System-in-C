@@ -26,9 +26,8 @@ dintr-un fisier de intrare de tip text.
 } File ,*TFile;
 	
 	
-	Initial, se defineste si se aloca memorie pentru directorul home, cel in care ne desfasuram toate task-urile, si se stabileste
-ca fiind directorul curent - dir_curent. Pointerul catre directorul parinte este NULL(conditie
-care alaturi de numele directorului = "home", indica punctul de plecare.
+	Initial, se defineste si se aloca memorie pentru directorul home, cel in care ne desfasuram toate task-urile, si se stabileste ca fiind 
+	directorul curent - dir_curent. Pointerul catre directorul parinte este NULL(conditie care alaturi de numele directorului = "home"), indica punctul de plecare.
 	 						
 	Programul principal consta dintr-o bucla while in care se citeste linie
 cu linie fisierul de intrare, executa comanda si rezultatul comenzii este scris
