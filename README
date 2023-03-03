@@ -70,8 +70,7 @@ in mod recursiv. Conditia de iesire din recursivitate este pointer head_children
 
 	void cd(Dir** target, char* name) - stabileste directorul curent;
 
-	void tree(Dir* target, int level) - functia recursiva afiseaza structura arborescenta a directorului curent in formatul si ordinea de afisare
-precizate in tema;
+	void tree(Dir* target, int level) - functia recursiva afiseaza structura arborescenta a directorului curent in formatul si ordinea de afisare;
 
 	char *pwd (Dir* target) - afiseaza calea pana la directorul curent;
 
