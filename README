@@ -1,0 +1,81 @@
+# File-System-in-C
+
+Lucrarea implementeaza un sistem de fişiere folosind liste simple înlănţuite.
+Programul simuleaza operatiile cu fisiere si directoare precizate in enunt, acestea fiind citite
+dintr-un fisier de intrare de tip text.
+ 
+
+	Structurile de date folosite sunt :
+
+	Pentru directoare se utilizeaza structura Dir, *TDir :
+
+	typedef struct Dir{
+	char *name;
+	struct Dir* parent;
+	struct File* head_children_files;
+	struct Dir* head_children_dirs;
+	struct Dir* next;
+} Dir , *TDir;
+
+	Pentru fisiere se utilizeaza structura File, *TFile :
+
+	typedef struct File {
+	char *name;
+	struct Dir* parent;
+	struct File* next;
+} File ,*TFile;
+	
+	
+	Initial, se defineste si se aloca memorie pentru directorul home, cel in care ne desfasuram toate task-urile, si se stabileste
+ca fiind directorul curent - dir_curent. Pointerul catre directorul parinte este NULL(conditie
+care alaturi de numele directorului = "home", indica punctul de plecare.
+	 						
+	Programul principal consta dintr-o bucla while in care se citeste linie
+cu linie fisierul de intrare, executa comanda si rezultatul comenzii este scris
+in stdout. Functiile corespunzatoare sunt precizate in scheletul de cod furnizat.
+
+	Pentru implementarea comenzilor am utilizat urmatoarele functii :
+	
+	TDir AlocDir(TDir parinte, char *nume) - aloca si initializeaza celula in 
+lista de directoare, alocarea realizandu-se si pentru numele directorului. In caz
+de esec se elibereaza memoria.
+	
+	TDir EsteDir(TDir parinte,char *nume) - cauta in directorul curent directorul si
+in subdirectoare. Intoarce pointer director gasit sau NULL.
+
+	TDir EsteDirC(TDir parinte,char *nume) - cauta in directorul curent directorul. 
+Intoarce pointer director gasit sau NULL.
+
+	TFile AlocFile(TDir parinte, char *nume) - aloca si initializeaza celula in 
+lista de fisiere, alocarea realizandu-se si pentru numele fisierului. In caz
+de esec se elibereaza memoria.
+
+	TFile EsteFis(TDir parinte,char *nume) - cauta in directorul curent fisierul nou creat.
+Intoarce pointer fisier gasit sau NULL.
+	
+	void delete_dir(TDir dir) - functia realizeaza stergerea unui director, a fisierelor si
+subdirectoarelor lui, din lista simplu inlantuita si corespunzator eliberarea memoriei alocate,
+in mod recursiv. Conditia de iesire din recursivitate este pointer head_children_dirs = NULL;
+
+	Comenzile citite din fisier sunt :
+
+	void touch (Dir* parent, char* name) - creaza un fisier in directorul curent;
+
+	void mkdir (Dir* parent, char* name) - creaza un director in directorul curent;
+
+	void ls (Dir* parent) - afiseaza subdirectoarele si fisiererele;
+
+	void rm (Dir* parent, char* name) - sterge fisier sau director, utilizand functiile EsteDir si EsteFis se identifica elementul de sters;
+
+	void rmdir (Dir* parent, char* name) - elimina directorul (structura de subdirectoare si fisiere), utlizand functia recursiva delete_dir;
+
+	void cd(Dir** target, char* name) - stabileste directorul curent;
+
+	void tree(Dir* target, int level) - functia recursiva afiseaza structura arborescenta a directorului curent in formatul si ordinea de afisare
+precizate in tema;
+
+	char *pwd (Dir* target) - afiseaza calea pana la directorul curent;
+
+	void stop (Dir* target) - opreste aplicatia ;
+
+	void mv(Dir* parent, char* oldname, char* newname) - schimba numele directorului sau fisierelor din directorul curent;	
